@@ -243,10 +243,6 @@ const PaymentPage = () => {
                     <span>Giảm giá</span>
                     <span style={{ color: '#000', fontSize: '14px', fontWeight: 'bold' }}>{convertPrice(priceDiscountMemo)}</span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span>Phí giao hàng</span>
-                    <span style={{ color: '#000', fontSize: '14px', fontWeight: 'bold' }}>{convertPrice(diliveryPriceMemo)}</span>
-                  </div>
                 </WrapperInfo>
                 <WrapperTotal>
                   <span>Tổng tiền</span>

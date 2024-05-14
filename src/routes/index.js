@@ -12,6 +12,7 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import SignInPage from "../pages/SingInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import TypeProductPage from "../pages/Type_Product_Page/TypeProductPage";
+import DetailProducts from "../pages/DetailProducts/DetailProduct";
 
 export const routes = [
     {
@@ -23,6 +24,12 @@ export const routes = [
     {
         path: '/order',
         page: OrderPage,
+        isShowHeader: true,
+        isShowFooter: true
+    },
+    {
+        path: '/type',
+        page: TypeProductPage ,
         isShowHeader: true,
         isShowFooter: true
     },
@@ -71,8 +78,8 @@ export const routes = [
         page: SignUpPage,
     },
     {
-        path: '/product-details/:id',
-        page: ProductDetailsPage,
+        path: '/DetailProducts',
+        page: DetailProducts,
         isShowHeader: true,
         isShowFooter: true
     },
@@ -83,7 +90,7 @@ export const routes = [
         isShowFooter: true
     },
     {
-        path: '/system/admin',
+        path: 'Admin',
         page: AdminPage,
         isShowHeader: true,
         isShowFooter: true,
