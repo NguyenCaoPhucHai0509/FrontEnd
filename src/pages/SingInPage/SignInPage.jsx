@@ -121,7 +121,6 @@ const SignInPage = () => {
                             styleTextButton={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }}
                         ></ButtonComponent>
                     </Loading>
-                    <p><WrapperTextLight>Quên mật khẩu?</WrapperTextLight></p>
                     <p style={{ fontSize: '14px', fontWeight: 400 }}>Chưa có tài khoản? <WrapperTextLight onClick={handleNavigateSignUp}> Tạo tài khoản</WrapperTextLight></p>
                     <h3 style={{ fontStyle: 'italic', textAlign: 'center' }}>Mua sắm tại TDTU SHOP</h3>
                 </WrapperContainerRight>

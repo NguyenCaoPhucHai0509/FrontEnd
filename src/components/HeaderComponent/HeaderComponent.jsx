@@ -9,12 +9,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as UserService from '../../services/UserService';
 import { resetUser } from '../../redux/slides/userSilde';
 import Loading from '../../components/LoadingComponent/Loading'
+import { searchProduct } from '../../redux/slides/productSlide';
 export const HeaderComponent = () => {
   const [userName, setUserName] = useState('')
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch();
+  const order = useSelector((state) => state.order)
+  const [search, setSearch] = useState('');
   const handleLogout = async () => {
     await UserService.logoutUser()
     dispatch(resetUser())
@@ -32,13 +35,16 @@ export const HeaderComponent = () => {
     <div>
       <WrapperContentPopup onClick={handleNavigateProfile}>Thông tin khách hàng</WrapperContentPopup>
       <WrapperContentPopup onClick={handleLogout}>Đăng xuất</WrapperContentPopup>
-      <WrapperContentPopup onClick={handleOrderSuccess}>Đơn hàng</WrapperContentPopup>
       {user?.isAdmin && (
         <WrapperContentPopup onClick={() => navigate('/Admin')}>Quản lí</WrapperContentPopup>
       )}
     </div>
   )
 
+  const onSearch = (e) => {
+    setSearch(e.target.value)
+    dispatch(searchProduct(e.target.value))
+  }
   useEffect(() => {
     setLoading(true)
     setUserName(user?.name)
@@ -62,7 +68,7 @@ export const HeaderComponent = () => {
             size="large"
             placeholder="Nhập tên sản phẩm, phân loại, nhóm hàng bạn muốn tìm kiếm"
             text="Tìm kiếm"
-          //onSearch={onSearch}
+            onChange={onSearch}
           />
         </Col>
         <Col span={6} style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
@@ -87,8 +93,8 @@ export const HeaderComponent = () => {
             </WrapperUser>
           </Loading>
           <div>
-            <div >
-              <Badge count={1} size='medium'>
+            <div onClick={() => navigate('/order')} style={{ cursor: 'pointer' }}>
+              <Badge count={order?.orderItems?.length} size='medium'>
                 <ShoppingOutlined style={{ fontSize: '30px', color: 'white' }} />
               </Badge>
               <WrapperTextHeaderSub>Giỏ Hàng</WrapperTextHeaderSub>

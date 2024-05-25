@@ -14,13 +14,29 @@ export const WrapperStyleHeader = styled.div`
   }
 `
 
-export const WrapperLeft = styled.div`
-  width: 910px;
+export const WrapperTotal = styled.div`
+display: flex;
+align-items: flex-start; 
+justify-content: space-between;
+  padding: 17px 20px;
+  background: #fff ;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 `
 
-export const WrapperListOrder = styled.div`
-
+export const WrapperBank = styled.div`
+  border: 1px solid;
+  border-radius: 8px;
+  align-item: center;
+  text-align: center;
+  background: green;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 30px 270px;
 `
+
+
 
 export const WrapperItemOrder = styled.div`
   display: flex;
@@ -30,19 +46,6 @@ export const WrapperItemOrder = styled.div`
   margin-top: 12px;
 `
 
-export const WrapperPriceDiscount = styled.span`
-  color: #999;
-  font-size: 12px;
-  text-decoration: line-through;
-  margin-left: 4px;
-`
-export const WrapperCountOrder  = styled.div`
-  display: flex;
-  align-items: center;
-  width: 84px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`
 
 export const WrapperRight = styled.div`
   width: 320px;
@@ -62,33 +65,4 @@ export const WrapperInfo = styled.div`
   width: 100%
 `
 
-export const WrapperTotal = styled.div`
-  display: flex;
-   align-items: flex-start; 
-   justify-content: space-between;
-    padding: 17px 20px;
-    background: #fff ;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-`
 
-export const Lable = styled.span`
-  font-size: 12px;
-  color: #000;
-  font-weight: bold
-`
-
-export const WrapperRadio = styled(Radio.Group)`
-  margin-top: 6px;
-  background: rgb(240, 248, 255);
-  border: 1px solid rgb(194, 225, 255);
-  width: 500px;
-  border-radius: 4px;
-  height: 100px;
-  padding: 16px;
-  font-weight: normal;
-  display:flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-`

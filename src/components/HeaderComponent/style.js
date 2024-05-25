@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const WrapperHeader = styled(Row)`
     padding: 10px 120px;
-    background-image: linear-gradient(to right,#471069,#30c5d2);
+    background: rgb(54, 71, 65);
     align-content: center;
 `
 export const WrapperTextHeader = styled.span`

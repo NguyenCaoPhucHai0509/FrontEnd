@@ -1,23 +1,30 @@
 import React from 'react'
 import { CardStyle, NameOfProduct, PriceOfProduct, RatingProps } from './style'
-import './customCard.css';
-import pic1 from '../../assets/images/pic1.jpg';
+import { useNavigate } from 'react-router-dom';
+import { SpaceCompactItemContext } from 'antd/es/space/Compact';
+
 const ProductBlock = (props) => {
   const { countInStock, description, image, name, price, type, selled, id } = props
+  const navigate = useNavigate()
+  const handleDetailsProduct = (id) => {
+    navigate(`/product-details/${id}`)
+  }
   return (
     <div>
       <CardStyle
         hoverable
-        style={{ width: 200, height: 'fitContent' }}
-        cover={<img alt="example" src={pic1} />}
-        className="custom-card"
+        head={{ width: '200px', height: '200px' }}
+        cover={<img alt="example" src={image} />}
+        body={{ padding: '10px' }}
+        style={{ width: 200 }}
+        // className="custom-card"
+        onClick={() => handleDetailsProduct(id)}
       >
         <NameOfProduct>{name}</NameOfProduct>
         <RatingProps>
-          <span>Đã bán {selled || 1000}+</span>
+          <span style={{ fontSize: '13px' }}>Phân loại: {type}</span>
         </RatingProps>
-        <PriceOfProduct>
-          {price}
+        <PriceOfProduct>{price} VNĐ
         </PriceOfProduct>
       </CardStyle>
     </div>

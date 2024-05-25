@@ -82,16 +82,6 @@ const AdminProduct = () => {
     },
   )
 
-  const mutationDeletedMany = useMutationHooks(
-    (data) => {
-      const { token, ...ids
-      } = data
-      const res = ProductService.deleteManyProduct(
-        ids,
-        token)
-      return res
-    },
-  )
 
   const getAllProducts = async () => {
     const res = await ProductService.getAllProduct()
@@ -132,13 +122,6 @@ const AdminProduct = () => {
     setIsOpenDrawer(true)
   }
 
-  const handleDelteManyProducts = (ids) => {
-    mutationDeletedMany.mutate({ ids: ids, token: user?.access_token }, {
-      onSettled: () => {
-        queryProduct.refetch()
-      }
-    })
-  }
 
   const fetchAllTypeProduct = async () => {
     const res = await ProductService.getAllTypeProduct()
@@ -148,7 +131,6 @@ const AdminProduct = () => {
   const { data, isPending, isSuccess, isError } = mutation
   const { data: dataUpdated, isPending: isLoadingUpdated, isSuccess: isSuccessUpdated, isError: isErrorUpdated } = mutationUpdate
   const { data: dataDeleted, isPending: isLoadingDeleted, isSuccess: isSuccessDelected, isError: isErrorDeleted } = mutationDeleted
-  const { data: dataDeletedMany, isPending: isLoadingDeletedMany, isSuccess: isSuccessDelectedMany, isError: isErrorDeletedMany } = mutationDeletedMany
 
 
   const queryProduct = useQuery({ queryKey: ['products'], queryFn: getAllProducts })
@@ -157,8 +139,8 @@ const AdminProduct = () => {
   const renderAction = () => {
     return (
       <div>
-        <DeleteOutlined style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} onClick={() => setIsModalOpenDelete(true)} />
-        <EditOutlined style={{ color: 'orange', fontSize: '30px', cursor: 'pointer' }} onClick={handleDetailsProduct} />
+        <DeleteOutlined style={{ color: 'black', fontSize: '20px', cursor: 'pointer' }} onClick={() => setIsModalOpenDelete(true)} />
+        <EditOutlined style={{ color: 'black', fontSize: '20px', cursor: 'pointer' }} onClick={handleDetailsProduct} />
       </div>
     )
   }
@@ -299,13 +281,6 @@ const AdminProduct = () => {
     }
   }, [isSuccess])
 
-  useEffect(() => {
-    if (isSuccessDelectedMany && dataDeletedMany?.status === 'OK') {
-      message.success()
-    } else if (isErrorDeletedMany) {
-      message.error()
-    }
-  }, [isSuccessDelectedMany])
 
   useEffect(() => {
     if (isSuccessDelected && dataDeleted?.status === 'OK') {
@@ -357,11 +332,9 @@ const AdminProduct = () => {
       name: '',
       price: '',
       description: '',
-      rating: '',
       image: '',
       type: '',
-      countInStock: '',
-      discount: '',
+      countInStock: ''
     })
     form.resetFields()
   };
@@ -439,7 +412,7 @@ const AdminProduct = () => {
         <Button style={{ height: '150px', width: '150px', borderRadius: '6px', borderStyle: 'dashed' }} onClick={() => setIsModalOpen(true)}><PlusOutlined style={{ fontSize: '60px' }} /></Button>
       </div>
       <div style={{ marginTop: '20px' }}>
-        <TableComponent handleDelteMany={handleDelteManyProducts} columns={columns} isPending={isLoadingProducts} data={dataTable} onRow={(record, rowIndex) => {
+        <TableComponent columns={columns} isPending={isLoadingProducts} data={dataTable} onRow={(record, rowIndex) => {
           return {
             onClick: event => {
               setRowSelected(record._id)
@@ -490,7 +463,7 @@ const AdminProduct = () => {
               </Form.Item>
             )}
             <Form.Item
-              label="Count inStock"
+              label="Count in Stock"
               name="countInStock"
               rules={[{ required: true, message: 'Please input your count inStock!' }]}
             >
@@ -582,13 +555,6 @@ const AdminProduct = () => {
               rules={[{ required: true, message: 'Please input your count description!' }]}
             >
               <InputComponent value={stateProductDetails.description} onChange={handleOnchangeDetails} name="description" />
-            </Form.Item>
-            <Form.Item
-              label="Discount"
-              name="discount"
-              rules={[{ required: true, message: 'Please input your discount of product!' }]}
-            >
-              <InputComponent value={stateProductDetails.discount} onChange={handleOnchangeDetails} name="discount" />
             </Form.Item>
             <Form.Item
               label="Image"
